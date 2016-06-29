@@ -9,4 +9,4 @@ Your goal is to add new API endpoints to this app.
 
 Only an authenticated user should have access to these endpoints. Only a superuser should be able to delete an image.
 
-:truck: Happy coding! :truck:
+[:truck: Happy coding! :truck:](http://media1.giphy.com/media/2G4flVpbo6RmE/giphy.gif)
