@@ -17,7 +17,12 @@ You can also create a new app from scratch if you're not familiar with Python.
    "90th": { // 90th-percentile values over all gifs
        "height": 289.39,
        "width": 420.94,
-   }
+   },
+   "common_words_title": [ // list the top 10 words in the title of the gifs, lowercased and sorted by most common first
+       {"word": "truck", "count": 8},
+       {"word": "happy", "count": 3},
+       ...
+   ]
 }
 ```
 
