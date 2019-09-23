@@ -5,7 +5,7 @@ You can also create a new app from scratch if you're not familiar with Python.
 
 - POST `/gifs/fetch/`: when you POST to this endpoint, the app should fetch the last 10 truck gifs from the [Giphy API](https://developers.giphy.com/docs/api/endpoint#search) and store their URL, title, dimensions to the database
 - GET `/gifs/`: list the available gifs from the database
-- POST/GET/PATCH/UPDATE `/gifs/<gif_id>/`: add, get details, delete, or update a single gif
+- POST/GET/DELETE/PATCH `/gifs/<gif_id>/`: add, get details, delete, or update a single gif
 - GET `/gifs/stats/`: return stats about the gifs stored in DB, in this shape:
 ```
 {
