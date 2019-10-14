@@ -6,9 +6,11 @@ from django.contrib import admin
 from rest_framework import routers
 
 from truckfinder.views import UserViewSet
+from gifs.views import GifViewSet
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'gifs', GifViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
