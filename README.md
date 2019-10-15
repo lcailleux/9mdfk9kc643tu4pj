@@ -29,3 +29,28 @@ You can also create a new app from scratch if you're not familiar with Python.
 Only an authenticated user should have access to these endpoints. Only a superuser should be able to delete an image.
 
 [:truck: Happy coding! :truck:](http://media1.giphy.com/media/2G4flVpbo6RmE/giphy.gif)
+
+
+## Installation of the coding test
+
+Clone the repository, then:
+
+```
+python3 -m venv ./path/to/new/virtual/environment
+
+source ./path/to/new/virtual/environment/bin/activate
+
+pip install -r requirements.txt
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+```
+
+Then run server:
+```
+python manage.py runserver
+```
+
+Connect to <server_url>/admin/settings to configure giphy's api_key.
+
+
