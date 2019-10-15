@@ -1,2 +1,15 @@
-django
-djangorestframework
+certifi==2019.9.11
+chardet==3.0.4
+Django==2.2.6
+django-dbsettings==0.11.0
+djangorestframework==3.10.3
+get==2019.4.13
+idna==2.8
+numpy==1.17.2
+post==2019.4.13
+public==2019.4.13
+pytz==2019.3
+query-string==2019.4.13
+requests==2.22.0
+sqlparse==0.3.0
+urllib3==1.25.6
