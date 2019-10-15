@@ -2,6 +2,7 @@ from gifs.helper.giphy import Giphy
 from gifs.models import Gif
 from gifs.serializers import GifSerializer
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
@@ -9,6 +10,8 @@ from rest_framework.response import Response
 class GifViewSet(viewsets.ModelViewSet):
     queryset = Gif.objects.all()
     serializer_class = GifSerializer
+    permission_classes = [IsAuthenticated]
+    http_method_names = ['get', 'post', 'put', 'patch', 'delete']
 
     def list(self, request, *args, **kwargs):
         """
@@ -17,6 +20,14 @@ class GifViewSet(viewsets.ModelViewSet):
         queryset = Gif.objects.all()
         serializer = GifSerializer(queryset, many=True)
         return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        """
+        DELETE /gifs/<gif_id>/
+        """
+        if request.user.is_superuser:
+            return super().destroy(self, request, args, kwargs)
+        return Response(data={"detail": "You do not have the permission to remove this."}, status=403)
 
     @action(methods=['post'], detail=False)
     def fetch(self, request):
@@ -72,6 +83,5 @@ class GifViewSet(viewsets.ModelViewSet):
             },
             "common_words_title": [titles]
         }
-
         return Response(response)
 
