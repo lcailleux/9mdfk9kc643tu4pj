@@ -78,12 +78,12 @@ class GifViewSet(viewsets.ModelViewSet):
         response = {
             "count": count,
             "average": {
-                "height": avg_height,
-                "width": avg_width
+                "height": round(avg_height, 2),
+                "width": round(avg_width, 2)
             },
             "90th": {
-                "height": percentile_height,
-                "width": percentile_width
+                "height": round(percentile_height, 2),
+                "width": round(percentile_width, 2)
             },
             "common_words_title": [titles]
         }
