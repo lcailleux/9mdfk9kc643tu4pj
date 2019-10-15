@@ -36,7 +36,7 @@ Only an authenticated user should have access to these endpoints. Only a superus
 Clone the repository, then:
 
 ```
-python3 -m venv ./path/to/new/virtual/environment
+python3.7 -m venv ./path/to/new/virtual/environment
 
 source ./path/to/new/virtual/environment/bin/activate
 
