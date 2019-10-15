@@ -4,31 +4,27 @@ import dbsettings
 
 class GiphyConfiguration(dbsettings.Group):
     api_key = dbsettings.StringValue()
-    search_endpoint = dbsettings.StringValue()
-    search_limit = dbsettings.PositiveIntegerValue()
-    search_offset = dbsettings.PositiveIntegerValue()
+    search_endpoint = dbsettings.StringValue(default="http://api.giphy.com/v1/gifs/search")
 
 
 class Giphy:
     configuration = GiphyConfiguration('Giphy Configuration')
-    url = "https://api.giphy.com/"
-    api_key = "KfJPspxkcEG1cQq1sQWkRzXHg3cZIs2m"
 
     def __init__(self):
         self.validate_configuration()
 
     def getTruckGifs(self):
-        url = self.getUrl('v1/gifs/search?q=truck', "KfJPspxkcEG1cQq1sQWkRzXHg3cZIs2m")
+        url = self.getSearchUrl('trucks')
         response = requests.get(url).json()
 
         if response['data']:
             return response['data']
 
-    def getUrl(self, path, api_key):
-        url = self.url
-        url += path
-        url += '&apikey=' + api_key + '&limit=10&offset=0&lang=en'
-        return url
+    def getSearchUrl(self, query, search_offset='0', search_limit='10'):
+        return self.configuration.search_endpoint + '?q=' + query \
+               + '&apikey=' + self.configuration.api_key \
+               + '&offset=' + search_offset \
+               + '&limit=' + search_limit
 
     def validate_configuration(self):
         for configuration in self.configuration:
