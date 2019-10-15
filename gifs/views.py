@@ -29,7 +29,7 @@ class GifViewSet(viewsets.ModelViewSet):
             return super().destroy(self, request, args, kwargs)
         return Response(data={"detail": "You do not have the permission to remove this."}, status=403)
 
-    @action(methods=['get'], detail=False)
+    @action(methods=['post'], detail=False)
     def fetch(self, request):
         """
         POST /gifs/fetch
