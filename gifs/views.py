@@ -29,16 +29,20 @@ class GifViewSet(viewsets.ModelViewSet):
             return super().destroy(self, request, args, kwargs)
         return Response(data={"detail": "You do not have the permission to remove this."}, status=403)
 
-    @action(methods=['post'], detail=False)
+    @action(methods=['get'], detail=False)
     def fetch(self, request):
         """
         POST /gifs/fetch
         """
-        connector = Giphy()
-        gif_list = connector.getGifs()
+
+        try:
+            connector = Giphy()
+            gif_list = connector.getTruckGifs()
+        except IndexError as error:
+            return Response({'detail': error.__str__()})
 
         i = 0
-        response = {"result": True, "errors": []}
+        response = {"detail": []}
         for gif in gif_list:
             try:
                 Gif.objects.update_or_create(
@@ -51,9 +55,9 @@ class GifViewSet(viewsets.ModelViewSet):
                 )
                 i = i + 1
             except KeyError as error:
-                response['errors'].append(str(error) + ": is nor defined")
+                response['detail'].append(str(error) + ": is nor defined")
                 continue
-        response["message"] = "{0} values imported".format(i)
+        response["detail"] = "{0} values imported".format(i)
         return Response(response)
 
     @action(methods=['get'], detail=False)
