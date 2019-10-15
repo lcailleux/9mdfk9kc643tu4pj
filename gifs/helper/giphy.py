@@ -14,6 +14,11 @@ class Giphy:
         self.validate_configuration()
 
     def getTruckGifs(self):
+        """
+        Gets gifs of trucks
+
+        :return:
+        """
         url = self.getSearchUrl('trucks')
         response = requests.get(url).json()
 
@@ -21,12 +26,25 @@ class Giphy:
             return response['data']
 
     def getSearchUrl(self, query, search_offset='0', search_limit='10'):
+        """
+        Gets giphy's search url
+
+        :param query:
+        :param search_offset:
+        :param search_limit:
+        :return:
+        """
         return self.configuration.search_endpoint + '?q=' + query \
                + '&apikey=' + self.configuration.api_key \
                + '&offset=' + search_offset \
                + '&limit=' + search_limit
 
     def validate_configuration(self):
+        """
+        Validating database configuration
+        :return:
+        """
+
         for configuration in self.configuration:
             key, value = configuration
             if not value:
